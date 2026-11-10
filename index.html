@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Health Score Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#prediction-form">Skip to the form</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Mental Health Score Predictor</h1>
+      <p class="subtitle">Enter a student's profile and daily habits to get a model estimate.</p>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <form id="prediction-form" class="card form-card" novalidate>
+      <div id="form-alert" class="alert" role="alert" hidden></div>
+
+      <!-- Profile -->
+      <fieldset class="form-section">
+        <legend>Profile</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="age">Age <span class="req" aria-hidden="true">*</span></label>
+            <input id="age" name="age" type="number" inputmode="numeric" step="1" min="0" max="120"
+                   required aria-describedby="age-hint age-error" />
+            <p class="hint" id="age-hint">Whole number, 0 to 120.</p>
+            <p class="error" id="age-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender <span class="req" aria-hidden="true">*</span></label>
+            <select id="gender" name="gender" required aria-describedby="gender-error">
+              <option value="" selected disabled>Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+            <p class="error" id="gender-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="country">Country <span class="req" aria-hidden="true">*</span></label>
+            <input id="country" name="country" type="text" list="country-list" autocomplete="country-name"
+                   required aria-describedby="country-hint country-error" />
+            <datalist id="country-list">
+              <option value="India"></option>
+              <option value="USA"></option>
+              <option value="Canada"></option>
+              <option value="Australia"></option>
+              <option value="UK"></option>
+              <option value="Germany"></option>
+              <option value="Mexico"></option>
+              <option value="Turkey"></option>
+              <option value="France"></option>
+              <option value="Other"></option>
+            </datalist>
+            <p class="hint" id="country-hint">Choose a suggestion or type another country.</p>
+            <p class="error" id="country-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="academic_level">Academic level <span class="req" aria-hidden="true">*</span></label>
+            <select id="academic_level" name="academic_level" required aria-describedby="academic_level-error">
+              <option value="" selected disabled>Select academic level</option>
+              <option>High School</option>
+              <option>Undergraduate</option>
+              <option>Graduate</option>
+              <option>Postgraduate</option>
+            </select>
+            <p class="error" id="academic_level-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Social media -->
+      <fieldset class="form-section">
+        <legend>Social media use</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="most_used_platform">Most used platform <span class="req" aria-hidden="true">*</span></label>
+            <select id="most_used_platform" name="most_used_platform" required aria-describedby="most_used_platform-error">
+              <option value="" selected disabled>Select platform</option>
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>Twitter</option>
+              <option>Snapchat</option>
+              <option>TikTok</option>
+              <option>YouTube</option>
+              <option>LinkedIn</option>
+              <option>LINE</option>
+              <option>KakaoTalk</option>
+              <option>VKontakte</option>
+              <option>WhatsApp</option>
+              <option>WeChat</option>
+              <option>Other</option>
+            </select>
+            <p class="error" id="most_used_platform-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="purpose_of_use">Purpose of use <span class="req" aria-hidden="true">*</span></label>
+            <select id="purpose_of_use" name="purpose_of_use" required aria-describedby="purpose_of_use-error">
+              <option value="" selected disabled>Select purpose</option>
+              <option>Socializing</option>
+              <option>Entertainment</option>
+              <option>News</option>
+              <option>Education</option>
+              <option>Work</option>
+              <option>Other</option>
+            </select>
+            <p class="error" id="purpose_of_use-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="avg_daily_usage_hours">Average daily usage (hours) <span class="req" aria-hidden="true">*</span></label>
+            <input id="avg_daily_usage_hours" name="avg_daily_usage_hours" type="number" inputmode="decimal"
+                   step="any" min="0" max="24" required aria-describedby="avg_daily_usage_hours-hint avg_daily_usage_hours-error" />
+            <p class="hint" id="avg_daily_usage_hours-hint">0 to 24 hours.</p>
+            <p class="error" id="avg_daily_usage_hours-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="daily_unlocks">Daily phone unlocks <span class="req" aria-hidden="true">*</span></label>
+            <input id="daily_unlocks" name="daily_unlocks" type="number" inputmode="numeric" step="1" min="0"
+                   required aria-describedby="daily_unlocks-hint daily_unlocks-error" />
+            <p class="hint" id="daily_unlocks-hint">Whole number, 0 or more.</p>
+            <p class="error" id="daily_unlocks-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Lifestyle -->
+      <fieldset class="form-section">
+        <legend>Daily lifestyle</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="study_hours">Study hours per day <span class="req" aria-hidden="true">*</span></label>
+            <input id="study_hours" name="study_hours" type="number" inputmode="decimal" step="any" min="0" max="24"
+                   required aria-describedby="study_hours-hint study_hours-error" />
+            <p class="hint" id="study_hours-hint">0 to 24 hours.</p>
+            <p class="error" id="study_hours-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="physical_activity_hours">Physical activity (hours) <span class="req" aria-hidden="true">*</span></label>
+            <input id="physical_activity_hours" name="physical_activity_hours" type="number" inputmode="decimal"
+                   step="any" min="0" max="24" required aria-describedby="physical_activity_hours-hint physical_activity_hours-error" />
+            <p class="hint" id="physical_activity_hours-hint">0 to 24 hours.</p>
+            <p class="error" id="physical_activity_hours-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="sleep_hours_per_night">Sleep per night (hours) <span class="req" aria-hidden="true">*</span></label>
+            <input id="sleep_hours_per_night" name="sleep_hours_per_night" type="number" inputmode="decimal"
+                   step="any" min="0" max="24" required aria-describedby="sleep_hours_per_night-hint sleep_hours_per_night-error" />
+            <p class="hint" id="sleep_hours_per_night-hint">0 to 24 hours.</p>
+            <p class="error" id="sleep_hours_per_night-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="stress_level">Stress level <span class="req" aria-hidden="true">*</span></label>
+            <select id="stress_level" name="stress_level" required aria-describedby="stress_level-error">
+              <option value="" selected disabled>Select stress level</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Very High</option>
+            </select>
+            <p class="error" id="stress_level-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <p class="required-note"><span class="req" aria-hidden="true">*</span> Required field</p>
+
+      <div class="actions">
+        <button id="submit-btn" type="submit" class="btn-primary">
+          <span class="spinner" aria-hidden="true" hidden></span>
+          <span class="btn-label">Predict score</span>
+        </button>
+      </div>
+    </form>
+
+    <section id="result-card" class="card result-card" aria-labelledby="result-title" tabindex="-1" hidden>
+      <h2 id="result-title">Predicted mental health score</h2>
+      <p class="result-value"><span id="result-value">--</span></p>
+      <p class="result-note">
+        This is a model estimate produced by a machine learning model. It is not a medical
+        diagnosis and should not replace advice from a qualified professional.
+      </p>
+    </section>
+  </main>
+
+  <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
