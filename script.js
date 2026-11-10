@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const API_URL = "https://mental-health-prediction-64u1.onrender.com";
+  const API_URL = "https://mental-health-prediction-64u1.onrender.com/predict";
   const TIMEOUT_MS = 15000;
 
   // Mirrors the StudentData Pydantic model in main.py.
